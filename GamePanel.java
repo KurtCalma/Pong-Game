@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements Runnable {
 	Ball ball;
 	Score score;
 	
+	int paddle2_speed = 8;
+	
 	GamePanel() {
 		newPaddles();
 		newBall();
@@ -60,8 +62,20 @@ public class GamePanel extends JPanel implements Runnable {
 	
 	public void move() {
 		paddle1.move();
-		paddle2.move();
 		ball.move();
+		
+		int ballY = ball.y; // creates a variable to contain the ball's velocity in the y-axis
+		int paddleCenter = paddle2.y + (paddle2.height / 2);
+		
+		if (paddleCenter < ballY) {
+			paddle2.setYDirection(paddle2_speed);
+		} else if (paddleCenter > ballY) {
+			paddle2.setYDirection(-paddle2_speed);
+		} else {
+			paddle2.setYDirection(0);
+		}
+		
+		paddle2.move();
 	}
 	
 	public void checkCollision() {

@@ -27,17 +27,17 @@ public class GamePanel extends JPanel implements Runnable {
 		newPaddles();
 		newBall();
 		score = new Score(GAME_WIDTH, GAME_HEIGHT);
-		this.setFocusable(true);
-		this.addKeyListener(new ActionListener());
-		this.setPreferredSize(SCREEN_SIZE);
+		this.setFocusable(true); // Ensures it receives keyboard input by setting the panel to receive focus as true
+		this.addKeyListener(new ActionListener()); // Receives key events from the keys of the keyboard
+		this.setPreferredSize(SCREEN_SIZE); // Sets the preferred size of the screen
 		
-		gameThread = new Thread(this);
+		gameThread = new Thread(this); 
 		gameThread.start();
 	}
 	
 	public void newBall() {
-		// random = new Random();
-		ball = new Ball((GAME_WIDTH / 2) - (BALL_DIAMETER / 2), (GAME_HEIGHT / 2) - (BALL_DIAMETER / 2), BALL_DIAMETER, BALL_DIAMETER);
+		random = new Random();
+		ball = new Ball((GAME_WIDTH / 2) - (BALL_DIAMETER / 2), random.nextInt(GAME_HEIGHT / 2 - BALL_DIAMETER / 2), BALL_DIAMETER, BALL_DIAMETER);
 	}
 	
 	public void newPaddles() {
@@ -143,7 +143,7 @@ public class GamePanel extends JPanel implements Runnable {
 			newBall();
 			
 			if (score.player2 == 10) {
-				JOptionPane.showMessageDialog(null, "Congratulations! You win the game!");
+				JOptionPane.showMessageDialog(null, "Unfortunately, you lost the game. Better luck next time.");
 				System.exit(0);
 			}
 		}

@@ -1,7 +1,5 @@
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
-import javax.swing.*;
 
 public class Ball extends Rectangle {
 	
@@ -13,6 +11,7 @@ public class Ball extends Rectangle {
 	Ball(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		random = new Random();
+		
 		int randomXDirection = random.nextInt(2);
 		if (randomXDirection == 0) {
 			randomXDirection--;

@@ -3,11 +3,12 @@ import javax.swing.*;
 
 public class GameFrame extends JFrame {
 	
-	GamePanel panel;
+	GamePanel panel; // Declare the panel of the game
 	
+	// GameFrame constructor
 	GameFrame() {
-		panel = new GamePanel();
-		this.add(panel);
+		panel = new GamePanel(); // Instantiates panel as an object of the GamePanel class
+		this.add(panel); // Adds the panel to the frame
 		this.setTitle("Pong Game");
 		this.setResizable(false);
 		this.setBackground(Color.black);

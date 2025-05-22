@@ -3,7 +3,6 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class GamePanel extends JPanel implements Runnable {
 	
@@ -43,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 		timeRemaining = new Countdown();
 		Timer timer = new Timer();
-		timer.scheduleAtFixedRate(timeRemaining, 1000, 1000); // Schedule the task to run every 1000ms (1 second)
+		timer.scheduleAtFixedRate(timeRemaining, 0, 1000); // Schedule the task to run every 1000ms (1 second)
 	}
 	
 	public void newBall() {

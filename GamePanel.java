@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GamePanel extends JPanel implements Runnable {
 	
@@ -20,6 +22,7 @@ public class GamePanel extends JPanel implements Runnable {
 	Paddle paddle2;
 	Ball ball;
 	Score score;
+	Countdown timeRemaining;
 	
 	int paddle2_speed = 8;
 	
@@ -33,6 +36,14 @@ public class GamePanel extends JPanel implements Runnable {
 		
 		gameThread = new Thread(this); 
 		gameThread.start();
+		
+		
+		Countdown.GAME_WIDTH = GAME_WIDTH;
+		Countdown.GAME_HEIGHT = GAME_HEIGHT;
+
+		timeRemaining = new Countdown();
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(timeRemaining, 1000, 1000); // Schedule the task to run every 1000ms (1 second)
 	}
 	
 	public void newBall() {
@@ -58,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
 		paddle2.draw(g);
 		ball.draw(g);
 		score.draw(g);
+		timeRemaining.draw(g);
 	}
 	
 	public void move() {

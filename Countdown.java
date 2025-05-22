@@ -1,16 +1,19 @@
 import java.awt.*;
-import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
 public class Countdown extends TimerTask {
 	
-	private static int timeRemaining = 60;
+	private static int timeRemaining = 300;
+	private static int minutes;
+	private static int seconds;
 	static int GAME_WIDTH;
 	static int GAME_HEIGHT;
 	
 	public void run() {
 		if (timeRemaining > 0) {
+			minutes = timeRemaining / 60;
+			seconds = timeRemaining % 60;
 			timeRemaining--;
 		} else {
 			JOptionPane.showMessageDialog(null, "Time's up! As a result, you unfortunately lose, my friend.", "Time's Up", JOptionPane.WARNING_MESSAGE);
@@ -23,7 +26,7 @@ public class Countdown extends TimerTask {
 		g.setColor(Color.red);
 		g.setFont(new Font("Consolas", Font.PLAIN, 60));
 		g.drawLine(GAME_WIDTH / 2, GAME_HEIGHT, GAME_WIDTH / 2, GAME_HEIGHT);
-		g.drawString(String.valueOf(timeRemaining / 10) + String.valueOf(timeRemaining % 10), (GAME_WIDTH / 2) - 85, (GAME_HEIGHT - 50));
-		g.drawString(String.valueOf(timeRemaining / 10) + String.valueOf(timeRemaining % 10), (GAME_WIDTH / 2) + 20, (GAME_HEIGHT - 50));
+		g.drawString(String.valueOf(minutes / 10) + String.valueOf(minutes % 10) + ":", (GAME_WIDTH / 2) - 95, (GAME_HEIGHT - 50));
+		g.drawString(String.valueOf(seconds / 10) + String.valueOf(seconds % 10), (GAME_WIDTH / 2) + 20, (GAME_HEIGHT - 50));
 	}
 }

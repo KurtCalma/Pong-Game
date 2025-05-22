@@ -1,9 +1,4 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class PongGame {
 	
@@ -11,7 +6,8 @@ public class PongGame {
 		
 		JOptionPane.showMessageDialog(null, "Greetings! Welcome to Pong!", "Instructions", JOptionPane.INFORMATION_MESSAGE);
 		JOptionPane.showMessageDialog(null, 
-				"The rules of this game are simple: whichever side gets 10 points first , wins!", 
+				"The rules of this game are simple: If the user scores 10 points first AND does it UNDER 5 MINUTES, they win!"
+				+ " If they don't at least fulfill ONE of the conditions, they lose.", 
 				"Instructions", 
 				JOptionPane.INFORMATION_MESSAGE);
 		JOptionPane.showMessageDialog(null, "To access the left paddle, use W for up and S for down.", "Instructions", JOptionPane.INFORMATION_MESSAGE);

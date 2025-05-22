@@ -13,6 +13,8 @@ public class GamePanel extends JPanel implements Runnable {
 	static final int PADDLE_WIDTH = 25;
 	static final int PADDLE_HEIGHT = 100;
 	
+	
+	// Declare variables that will serve as the game's components
 	Thread gameThread;
 	Image image;
 	Graphics graphics;
@@ -33,29 +35,33 @@ public class GamePanel extends JPanel implements Runnable {
 		this.addKeyListener(new ActionListener()); // Receives key events from the keys of the keyboard
 		this.setPreferredSize(SCREEN_SIZE); // Sets the preferred size of the screen
 		
-		gameThread = new Thread(this); 
-		gameThread.start();
+		gameThread = new Thread(this); // Instantiate gameThread as an object of the Thread class
+		gameThread.start(); // starts the game thread to manage the loop of the game and consistently update its state 
 		
-		
+		// Initialize the variables that will display the countdown on the screen
 		Countdown.GAME_WIDTH = GAME_WIDTH;
 		Countdown.GAME_HEIGHT = GAME_HEIGHT;
 
+		// Instantiates two objects in order to initialize the countdown
 		timeRemaining = new Countdown();
 		Timer timer = new Timer();
 		timer.scheduleAtFixedRate(timeRemaining, 0, 1000); // Schedule the task to run every 1000ms (1 second)
 	}
 	
 	public void newBall() {
+		// Set the ball at a random position
 		random = new Random();
 		ball = new Ball((GAME_WIDTH / 2) - (BALL_DIAMETER / 2), random.nextInt(GAME_HEIGHT / 2 - BALL_DIAMETER / 2), BALL_DIAMETER, BALL_DIAMETER);
 	}
 	
 	public void newPaddles() {
+		// Set the positions of the paddles
 		paddle1 = new Paddle(0, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 1);
 		paddle2 = new Paddle(GAME_WIDTH - PADDLE_WIDTH, (GAME_HEIGHT / 2) - (PADDLE_HEIGHT / 2), PADDLE_WIDTH, PADDLE_HEIGHT, 2);
 	}
 	
 	public void paint(Graphics g) {
+		// Create the graphics of the game
 		image = createImage(getWidth(), getHeight());
 		graphics = image.getGraphics();
 		draw(graphics);
@@ -64,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 	
 	public void draw(Graphics g) {
+		// draw the images of the following game components below
 		paddle1.draw(g);
 		paddle2.draw(g);
 		ball.draw(g);

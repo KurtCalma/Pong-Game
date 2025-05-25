@@ -1,4 +1,6 @@
-import java.awt.*;
+package pong;
+
+import java.awt.*; 
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
@@ -25,7 +27,6 @@ public class Countdown extends TimerTask {
 	public void draw(Graphics g) {
 		g.setColor(Color.red);
 		g.setFont(new Font("Consolas", Font.PLAIN, 60));
-		g.drawLine(GAME_WIDTH / 2, GAME_HEIGHT, GAME_WIDTH / 2, GAME_HEIGHT);
 		g.drawString(String.valueOf(minutes / 10) + String.valueOf(minutes % 10) + ":", (GAME_WIDTH / 2) - 95, (GAME_HEIGHT - 50)); // Position the minutes of the countdown
 		g.drawString(String.valueOf(seconds / 10) + String.valueOf(seconds % 10), (GAME_WIDTH / 2) + 20, (GAME_HEIGHT - 50)); // Position the seconds of the countdown
 	}

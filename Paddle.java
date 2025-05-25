@@ -42,7 +42,7 @@ public class Paddle extends Rectangle {
 	}
 	
 	public void setYDirection(int yDirection) {
-		yVelocity = yDirection; // Initalize the yVelocity variable with the left paddle's vertical speed
+		yVelocity = yDirection; // Initialize the yVelocity variable with the left paddle's vertical speed
 	}
 	
 	public void move() {

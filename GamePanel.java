@@ -211,8 +211,8 @@ public class GamePanel extends JPanel implements Runnable {
 		
 	}
 	
+	// Manages keyboard inputs
 	public class ActionListener extends KeyAdapter {
-		
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
 			paddle2.keyPressed(e);

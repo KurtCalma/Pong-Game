@@ -82,15 +82,15 @@ public class GamePanel extends JPanel implements Runnable {
 		paddle1.move();
 		ball.move();
 		
-		int ballY = ball.y; // creates a variable to contain the ball's velocity in the y-axis
-		int paddleCenter = paddle2.y + (paddle2.height / 2);
+		int ballY = ball.y; // holds the ball's instantaneous position in the y-axis
+		int paddleCenter = paddle2.y + (paddle2.height / 2); // Calculates the position of paddle2's center
 		
 		if (paddleCenter < ballY) {
-			paddle2.setYDirection(paddle2_speed);
+			paddle2.setYDirection(paddle2_speed); // Follow the ball downwards
 		} else if (paddleCenter > ballY) {
-			paddle2.setYDirection(-paddle2_speed);
+			paddle2.setYDirection(-paddle2_speed); // Follow the ball upwards
 		} else {
-			paddle2.setYDirection(0);
+			paddle2.setYDirection(0); // Stop the movement of paddle2
 		}
 		
 		paddle2.move();
@@ -99,17 +99,17 @@ public class GamePanel extends JPanel implements Runnable {
 	public void checkCollision() {
 		// bounce ball off top & window edges
 		if (ball.y <= 0) {
-			ball.setYDirection(-ball.yVelocity);
+			ball.setYDirection(-ball.yVelocity); // reverse the velocity of the ball once it hits the top edge
 		}
 		
 		if (ball.y >= GAME_HEIGHT - BALL_DIAMETER) {
-			ball.setYDirection(-ball.yVelocity);
+			ball.setYDirection(-ball.yVelocity); // reverse the velocity of the ball once it hits the bottom edge
 		}
 		
 		// bounce ball off paddles
 		if (ball.intersects(paddle1)) {
 			ball.xVelocity = Math.abs(ball.xVelocity); /* xVelocity is previously negative, 
-			so it uses absolute value to turn into a positive value */
+			so it uses absolute value to turn it into a positive value */
 			ball.xVelocity++; // increases the speed of the ball for more difficulty
 			
 			if (ball.yVelocity > 0) {
@@ -125,53 +125,61 @@ public class GamePanel extends JPanel implements Runnable {
 		if (ball.intersects(paddle2)) {
 			ball.xVelocity = Math.abs(ball.xVelocity); /* xVelocity is previously negative, 
 			so it uses absolute value to turn into a positive value */
-			ball.xVelocity++; // increases the speed of the ball for more difficulty
+			ball.xVelocity++; // increases the ball's horizontal velocity
 			
+			// increases the ball's vertical velocity
 			if (ball.yVelocity > 0) {
-				ball.yVelocity++;
+				ball.yVelocity++; // increase in the downward direction if vertical velocity is in the positive Y direction
 			} else {
-				ball.yVelocity--;
+				ball.yVelocity--; // increase in the upward direction if the vertical velocity is in the negative Y direction
 			}
 			
+			// set the new X and Y directions of the ball with its updated X and Y velocities
 			ball.setXDirection(-ball.xVelocity);
 			ball.setYDirection(ball.yVelocity);
 		}
 		
-		// stops paddles at window edges
+		// Stop the user paddle if it hits the top edge
 		if (paddle1.y <= 0) {
 			paddle1.y = 0;
 		}
 		
+		// Stop the user paddle if it hits the bottom edge
 		if (paddle1.y >= (GAME_HEIGHT - PADDLE_HEIGHT)) {
 			paddle1.y = GAME_HEIGHT - PADDLE_HEIGHT;
 		}
 		
+		// Stop the right paddle if it hits the top edge
 		if (paddle2.y <= 0) {
 			paddle2.y = 0;
 		}
 		
+		// Stop the right paddle if it hits the bottom edge
 		if (paddle2.y >= (GAME_HEIGHT - PADDLE_HEIGHT)) {
 			paddle2.y = GAME_HEIGHT - PADDLE_HEIGHT;
 		}
 		
-		// give a player 1 point and creates new paddles & ball
+		// give the right paddle 1 point and create new paddles & a new ball
 		if (ball.x <= 0) {
-			score.player2++;
+			score.right_paddle++;
 			newPaddles();
 			newBall();
 			
-			if (score.player2 == 10) {
+			// If the right paddle wins
+			if (score.player == 10) {
 				JOptionPane.showMessageDialog(null, "Unfortunately, you lost the game. Better luck next time.");
 				System.exit(0);
 			}
 		}
 		
+		// give the left paddle (player or user paddle) 1 point and create new paddles & a new ball
 		if (ball.x >= GAME_WIDTH - BALL_DIAMETER) {
-			score.player1++;
+			score.player++;
 			newPaddles();
 			newBall();
 			
-			if (score.player1 == 10) {
+			// If the player wins
+			if (score.player == 10) {
 				JOptionPane.showMessageDialog(null, "Congratulations! You win the game!");
 				System.exit(0);
 			}

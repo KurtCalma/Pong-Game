@@ -1,5 +1,3 @@
-package pong;
-
 import java.awt.*; 
 import java.util.TimerTask;
 import javax.swing.JOptionPane;

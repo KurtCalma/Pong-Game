@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.*; 
 import java.awt.event.*;
 
 public class Paddle extends Rectangle {
@@ -29,13 +29,13 @@ public class Paddle extends Rectangle {
 	public void keyReleased(KeyEvent e) {
 		// If W key on the keyboard is released
 		if (e.getKeyCode() == KeyEvent.VK_W) {
-			setYDirection(0); // Stop the speed of the user paddle
+			setYDirection(0); // Stop the motion of the user paddle
 			move();
 		}
 		
 		// If S key on the keyboard is released
 		if (e.getKeyCode() == KeyEvent.VK_S) {
-			setYDirection(0); // Stop the speed of the user paddle
+			setYDirection(0); // Stop the motion of the user paddle
 			move();
 		}
 		
